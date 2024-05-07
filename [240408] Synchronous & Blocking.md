@@ -1,3 +1,5 @@
+# [240408] Synchronous & Blocking
+
 요즈음 진행하고 있는 프로젝트의 기능 구현 방식에 대해 고민하다가 `비동기 처리`에 꽂혔다. 프-백 상관없이 이런저런 정보를 찍먹하다가 이왕이면 성능 개선까지 실현해보자하는 생각에 스프링에서 비동기 처리를 구현하는 방식에 대해 본격적으로 공부해보려 한다.
 
 원래 이번 주차에 @Async 어노테이션에 대해 정리해보려 했으나, 그보다도 근본적인 개념인 비동기-동기/블럭킹-논블럭킹에 대해 설명하고 가는 편이 좋을 것 같아 해당 주제를 먼저 정리해보았다.
@@ -14,7 +16,9 @@
 
 # 배경
 
-이 용어의 쓰임에 대해 찾아보면, 다음의 [IBM 자료](https://developer.ibm.com/articles/l-async/)를 발견할 수 있을 것이다.![](https://velog.velcdn.com/images/gangjjang5/post/9b245665-1502-44f3-95f5-5db74e2f9467/image.png)
+이 용어의 쓰임에 대해 찾아보면, 다음의 [IBM 자료](https://developer.ibm.com/articles/l-async/)를 발견할 수 있을 것이다.
+
+![](https://velog.velcdn.com/images/gangjjang5/post/9b245665-1502-44f3-95f5-5db74e2f9467/image.png)
 
 무려  2006년에 작성된 글에 등장한 자료이다. 지금의 우리에게는 익숙하다만, 당시에는 굉장한 신기술이었던 AIO(Asynchronous I/O)에 대해 설명하는 글이다.
 
@@ -91,6 +95,27 @@
 > 호출한 함수는 호출된 함수에게 관심이 없다. 호출된 함수는 return을 바로 준다. 호출한 함수는 제어권을 받아 다른 일을 할 수 있다. 호출된 함수의 작업이 완료되면 callback으로 호출한 함수에게 결과를 넘겨준다.
 
 라떼를 주문하니 사장님이 빈 컵을 주셨다. 자리에 앉아 노트북을 켜고 작업을 시작한다. 작업에 한창 심취해있으니 라떼가 완성되었고, 사장님이 자리로 와 빈 컵에 따라주셨다.
+
+---
+
+# Q&A
+
+## Synchronous non-blocking/Asynchronous blocking이 실제로 쓰이는 개념인지, 아니면 단순히 조합상 등장할 수 있다는 의미인지 궁금합니다.
+
+## Synchronous non-blocking에서는 호출한 함수가 질의하지 않으면 결과값을 받을 수 없나요?
+<style>
+.callout {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+</style>
+
+<div class="callout">
+  이것은 Sync/Async를 호출된 함수의 종료를 호출한 함수가 처리하느냐, 호출된 함수가 처리하느냐로 이해하면 쉽습니다.
+</div>
 
 
 # 다음 주제 예고
